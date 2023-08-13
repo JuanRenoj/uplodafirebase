@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+<div class="container">
+
+<form  id="myform" class="form">
+    <div class="form-input">
+        <label for="img" class="input-label">Seleccione la imagen</label>
+       <input type="file" name="img" id="img" class="input-text" required/>  
+     
+    </div>
+    <div class="form-input">
+        <label for="nombre" class="input-label">Tipo de archivo</label>
+        <select id="tipo" name="tipo" class="input-text">
+        <option value="Bordado" selected>Bordados</option>
+        <option value="Sublimacion" >Sublimación</option>
+        <option value="Impresion" >Impresión</option>
+        <option value="Serigrafia" >Serigrafía</option>
+        <option value="Manualidad" >Manualidad</option>
+    </select>
+
+        </div>
+   <div class="form-input">
+    <label for="nombre" class="input-label"> Nombre de la imagen</label>
+    <input type="text" name="nombre" id="nombre" placeholder="nombre"  autocomplete=""  class="input-text"/>
+    </div>
+    <div class="form-input">
+        <label for="nombre " class="input-label">Descripción</label>
+        <input type="text" name="descripcion" id="descripcion" placeholder="descripcion"  class="input-text"/>
+        </div>
+        <div class="form-input">
+            <label for="precio" class="input-label">Precio de la imagen</label>
+            <div class="input-group">
+            <label for="precio" class="input-group-label">Q</label>
+            <input type="text" name="precio" id="precio" placeholder=""  class="input-group-text"/>
+        </div>
+            </div>
+    <div class="form-input">
+    <input type="submit" id="btnSubmit" value="subir" class="btn-primary">
+</div>
+</form>
+<div>
+<picture>
+   <img  alt="img" id="viewimage" class="preview-image"> 
+</picture>
+<button id="btnAviso"> ver notificacion</button>
+</div>   </div> 
+<script type="module" src="index.js"></script>
+<script type="module" src="firestore.js"></script>
+</body>
+
+</html>
