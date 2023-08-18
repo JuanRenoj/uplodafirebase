@@ -27,20 +27,22 @@ var imagenes=[];
 
 document.getElementById("myform").addEventListener("submit",async (e)=>{
   let mybutton=document.getElementById("btnSubmit");
-  mybutton.disable=true;
-
+  let status=document.getElementById("label-status");
+  mybutton.disabled=true;
+status.innerHTML="Subiendo...."
     e.preventDefault();
     let data=Object.fromEntries(new FormData(e.target))
-   
+   let img=[];
 let tipo=data.tipo;
-
+ img.push(data.img);
+console.log(img)
 console.log(data)
 try {
 
-    for(let i =0; i<imagenes.length; i++){ 
-          console.log(imagenes)
-        const imgRef=ref(storage,`${tipo}/`+imagenes[i].name)
-        await uploadBytes(imgRef,imagenes[i]); 
+    for(let i =0; i<img.length; i++){ 
+          console.log(img)
+        const imgRef=ref(storage,`${tipo}/`+img[i].name)
+        await uploadBytes(imgRef,img[i]); 
         let urlImage=await getDownloadURL(imgRef);
         let viewimage=document.getElementById("viewimage");
         viewimage.src=urlImage
@@ -53,24 +55,29 @@ try {
         }
 
       createInfo(uploaddata,tipo)
-        
+        mybutton.disabled=false
     }
+ 
     aviso("Aviso","el registro fue creado","success"); 
     document.getElementById("myform").reset()
-   
+   status.innerHTML="Completado..."
+   document.getElementById("preview-image").src = "";
 } catch (error) {
-  aviso("Aviso","el registro no fue creado "+error,"error");
+ // aviso("Aviso","el registro no fue creado "+error,"error");
     console.log(error)
 }
-mybutton.disable=false;
+
   } );
 
   document.getElementById("img").addEventListener("change",e=>{
     console.log(e.target.files[0])
     let image=e.target.files[0]
-    imagenes.push(image)
-    //let nombre=document.getElementById("nombre");
-    //nombre.value=image.name;
+    if(e.target.files.length > 0){
+      var src = URL.createObjectURL(e.target.files[0]);
+      var preview = document.getElementById("preview-image");
+      preview.src = src;
+      preview.style.display = "block";
+    }
   })
 
   document.getElementById("btnAviso").addEventListener("click",()=>{

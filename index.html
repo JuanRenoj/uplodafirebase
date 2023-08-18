@@ -12,9 +12,12 @@
 <form  id="myform" class="form">
     <div class="form-input">
         <label for="img" class="input-label">Seleccione la imagen</label>
-       <input type="file" name="img" id="img" class="input-text" required/>  
+       <input type="file" name="img" id="img" accept="image/*" class="input-text" required/>  
      
     </div>
+    <picture>
+        <img  alt="prev" id="preview-image" class="preview-image"> 
+     </picture>
     <div class="form-input">
         <label for="nombre" class="input-label">Tipo de archivo</label>
         <select id="tipo" name="tipo" class="input-text">
@@ -46,10 +49,13 @@
 </div>
 </form>
 <div>
+    <div><label for="df" id="label-status"></label></div>
+    <div>
 <picture>
    <img  alt="img" id="viewimage" class="preview-image"> 
-</picture>
-<button id="btnAviso"> ver notificacion</button>
+</picture></div>
+<div>
+<button id="btnAviso"> ver notificacion</button></div>
 </div>   </div> 
 <script type="module" src="index.js"></script>
 <script type="module" src="firestore.js"></script>
